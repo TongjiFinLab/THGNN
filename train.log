@@ -1,82 +1,0 @@
-train data loading: 0.00%train data loading: 5.26%train data loading: 10.53%train data loading: 15.79%train data loading: 21.05%train data loading: 26.32%train data loading: 31.58%train data loading: 36.84%train data loading: 42.11%train data loading: 47.37%train data loading: 52.63%train data loading: 57.89%train data loading: 63.16%train data loading: 68.42%train data loading: 73.68%train data loading: 78.95%train data loading: 84.21%train data loading: 89.47%train data loading: 94.74%train data loaded!
-val data loading: 0.00%val data loading: 25.00%val data loading: 50.00%val data loading: 75.00%val data loaded!
-start training
-Epoch: 1/60, train loss: 0.250859, val loss: 0.235621
-Epoch: 2/60, train loss: 0.245204
-Epoch: 3/60, train loss: 0.237148
-Epoch: 4/60, train loss: 0.232325
-Epoch: 5/60, train loss: 0.226576
-Epoch: 6/60, train loss: 0.221270
-Epoch: 7/60, train loss: 0.219782
-Epoch: 8/60, train loss: 0.212987
-Epoch: 9/60, train loss: 0.211498
-Epoch: 10/60, train loss: 0.208524
-Epoch: 11/60, train loss: 0.205804, val loss: 0.186939
-Epoch: 12/60, train loss: 0.203328
-Epoch: 13/60, train loss: 0.201072
-Epoch: 14/60, train loss: 0.199008
-Epoch: 15/60, train loss: 0.197076
-Epoch: 16/60, train loss: 0.192591
-Epoch: 17/60, train loss: 0.190433
-Epoch: 18/60, train loss: 0.188796
-Epoch: 19/60, train loss: 0.187286
-Epoch: 20/60, train loss: 0.185914
-Epoch: 21/60, train loss: 0.184660, val loss: 0.169941
-Epoch: 22/60, train loss: 0.183509
-Epoch: 23/60, train loss: 0.182449
-Epoch: 24/60, train loss: 0.181469
-Epoch: 25/60, train loss: 0.180559
-Epoch: 26/60, train loss: 0.179713
-Epoch: 27/60, train loss: 0.178920
-Epoch: 28/60, train loss: 0.178177
-Epoch: 29/60, train loss: 0.177475
-Epoch: 30/60, train loss: 0.176810
-Epoch: 31/60, train loss: 0.176176, val loss: 0.161954
-Epoch: 32/60, train loss: 0.175571
-Epoch: 33/60, train loss: 0.174989
-Epoch: 34/60, train loss: 0.174428
-Epoch: 35/60, train loss: 0.173885
-Epoch: 36/60, train loss: 0.173357
-Epoch: 37/60, train loss: 0.172841
-Epoch: 38/60, train loss: 0.172336
-Epoch: 39/60, train loss: 0.171840
-Epoch: 40/60, train loss: 0.171351
-Epoch: 41/60, train loss: 0.170867, val loss: 0.156920
-Epoch: 42/60, train loss: 0.170389
-Epoch: 43/60, train loss: 0.169914
-Epoch: 44/60, train loss: 0.169441
-Epoch: 45/60, train loss: 0.168971
-Epoch: 46/60, train loss: 0.168501
-Epoch: 47/60, train loss: 0.168032
-Epoch: 48/60, train loss: 0.167563
-Epoch: 49/60, train loss: 0.167094
-Epoch: 50/60, train loss: 0.166624
-Epoch: 51/60, train loss: 0.166152, val loss: 0.152389
-Epoch: 52/60, train loss: 0.165679
-Epoch: 53/60, train loss: 0.165202
-Epoch: 54/60, train loss: 0.164722
-Epoch: 55/60, train loss: 0.164236
-Epoch: 56/60, train loss: 0.163744
-Epoch: 57/60, train loss: 0.163245
-Epoch: 58/60, train loss: 0.162737
-Epoch: 59/60, train loss: 0.162213
-Epoch: 60/60, train loss: 0.161655
-save model!
-  0%|          | 0/4 [00:00<?, ?it/s]100%|██████████| 4/4 [00:00<00:00, 160.84it/s]
-        code          dt     score
-0  000001.SZ  2022-12-26  0.261687
-1  000002.SZ  2022-12-26  0.256010
-2  000063.SZ  2022-12-26  0.662393
-3  000069.SZ  2022-12-26  0.262333
-0  000001.SZ  2022-12-27  0.261726
-1  000002.SZ  2022-12-27  0.255365
-2  000063.SZ  2022-12-27  0.662297
-3  000069.SZ  2022-12-27  0.262499
-0  000001.SZ  2022-12-28  0.261746
-1  000002.SZ  2022-12-28  0.639667
-2  000063.SZ  2022-12-28  0.662203
-3  000069.SZ  2022-12-28  0.262590
-0  000001.SZ  2022-12-29  0.261603
-1  000002.SZ  2022-12-29  0.648451
-2  000063.SZ  2022-12-29  0.662213
-3  000069.SZ  2022-12-29  0.262730
