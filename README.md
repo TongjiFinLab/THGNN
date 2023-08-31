@@ -42,15 +42,19 @@ The input to your model is a pkl file that includes the stock symbol `code`, the
 * If you find **THGNN** is useful for your research, please consider citing the following papers:
 
   ``` latex
-  @inproceedings{xiang2022thgnn,
-      title={Temporal and Heterogeneous Graph Neural Network for Financial Time Series Prediction},
-      author={Xiang, Sheng and Cheng, Dawei and Shang, Chencheng and Zhang, Ying and Liang, Yuqi},
-      booktitle = {Proceedings of the 31st ACM International Conference on Information and Knowledge Management},
-      publisher = {Association for Computing Machinery},
-      address = {New York, NY, USA},
-      pages = {3584–3593},
-	  numpages = {10},
-      year={2022},
-      doi = {10.1145/3511808.3557089}
-    }
+  @inproceedings{Xiang2022Temporal,
+    author = {Xiang, Sheng and Cheng, Dawei and Shang, Chencheng and Zhang, Ying and Liang, Yuqi},
+    title = {Temporal and Heterogeneous Graph Neural Network for Financial Time Series Prediction},
+    year = {2022},
+    isbn = {9781450392365},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    url = {https://doi.org/10.1145/3511808.3557089},
+    doi = {10.1145/3511808.3557089},
+    booktitle = {Proceedings of the 31st ACM International Conference on Information & Knowledge Management},
+    pages = {3584–3593},
+    numpages = {10},
+    location = {Atlanta, GA, USA},
+    series = {CIKM '22}
+}
   ```
