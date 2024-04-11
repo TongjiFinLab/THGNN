@@ -17,6 +17,12 @@ def cal_pccs(x, y, n):
     return pcc
 
 def calculate_pccs(xs, yss, n):
+    '''
+    example usage:
+    xs
+    
+    '''
+    
     result = []
     for name in yss:
         ys = yss[name]
@@ -25,7 +31,7 @@ def calculate_pccs(xs, yss, n):
             y = ys[pos]
             tmp_res.append(cal_pccs(x, y, n))
         result.append(tmp_res)
-    return np.mean(result, axis=1)
+    return np.mean(result, axis=1) # mean of all pccs -> 6개의 feature에 대한 평균 pccs -> 이렇게 하면 안되지 않니... 어떻게 했지 
 
 def stock_cor_matrix(ref_dict, codes, n, processes=1):
     if processes > 1:
@@ -50,10 +56,7 @@ stock_trade_data.sort()
 stock_num=df1.code.unique().shape[0]
 #dt is the last trading day of each month
 dt=['2022-11-30','2022-12-30']
-# for i in ['2020','2021','2022']:
-#     for j in ['01','02','03','04','05','06','07','08','09','10','11','12']:
-#         stock_m=[k for k in stock_trade_data if k>i+'-'+j and k<i+'-'+j+'-32']
-#         dt.append(stock_m[-1])
+
 df1['dt']=df1['dt'].astype('datetime64')
 
 for i in range(len(dt)):
@@ -77,3 +80,7 @@ for i in range(len(dt)):
     t2 = time.time()
     print('time cost', t2 - t1, 's')
     result.to_csv("/home/THGNN-main/data/relation/"+str(end_data)+".csv")
+    
+    '''
+    그냥 데이터 가지고 
+    '''

@@ -1,6 +1,20 @@
 # Temporal and Heterogeneous Graph Neural Network for Financial Time Series Prediction (THGNN)
 ## 1. Prepare you training data
-The input to your model is a pkl file that includes the stock symbol `code`, the time `dt`, and the volume and price features. Then, you need to use `generate_relation.py` to generate daily stock relationships and `generate_data.py` to generate the final input data for the model. You can adjust the features used in building the stock relationship and generating the final input by changing `feature_cols`. The `relation` directory stores the relations between stocks. The `daily_stock` directory contains stocks that are trained each day. The `data_train_predict` directory stores the final inputs fed to the model each day. The `prediction` directory stores the prediction result of the validation set. The `model_saved` directory stores the trained model.
+The input to your model is a pkl file that includes the stock symbol `code`, the time `dt`, and the volume and price features. 
+
+Then, you need to use `generate_relation.py` to generate daily stock relationships and `generate_data.py` to generate the final input data for the model. 
+
+You can adjust the features used in building the stock relationship and generating the final input by changing `feature_cols`. 
+
+The `relation` directory stores the relations between stocks. 
+
+The `daily_stock` directory contains stocks that are trained each day. 
+
+The `data_train_predict` directory stores the final inputs fed to the model each day. 
+
+The `prediction` directory stores the prediction result of the validation set. 
+
+The `model_saved` directory stores the trained model.
 
 ## 2. Train you model
 * Before training, make sure to change the parameters in class `Args` and function `main`.
