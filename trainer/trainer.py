@@ -56,29 +56,3 @@ def eval_epoch(args, model, dataset_eval, loss_fcn):
         loss, logits = evaluate(model, features, pos_adj, neg_adj, labels, mask, loss_func=loss_fcn)
         break
     return loss, logits
-
-def train_epoch(epoch, args, model, dataset_train, optimizer, scheduler, loss_fcn):
-    model.train()
-    loss_return = 0
-    for batch_data in dataset_train:
-        for batch_idx, data in enumerate(batch_data):
-            model.zero_grad()
-            pos_adj, neg_adj, features, labels, mask = extract_data(data, args.device)
-            logits = model(features, pos_adj, neg_adj)
-            loss = loss_fcn(logits[mask], labels[mask])
-            loss.backward()
-            optimizer.step()
-            scheduler.step()
-            if batch_idx == 0:
-                loss_return += loss.data
-    return loss_return/len(dataset_train)
-
-
-def eval_epoch(args, model, dataset_eval, loss_fcn):
-    loss = 0.
-    logits = None
-    for batch_idx, data in enumerate(dataset_eval):
-        pos_adj, neg_adj, features, labels, mask = extract_data(data, args.device)
-        loss, logits = evaluate(model, features, pos_adj, neg_adj, labels, mask, loss_func=loss_fcn)
-        break
-    return loss, logits

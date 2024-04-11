@@ -9,10 +9,10 @@ from torch.autograd import Variable
 
 feature_cols = ['open','high','low','close','to','vol']
 
-path1 = "/home/THGNN-main/data/csi300.pkl"
+path1 = "./data/csi300.pkl"
 
 df1 = pickle.load(open(path1, 'rb'), encoding='utf-8')
-relation = os.listdir('/home/THGNN-main/data/relation/')
+relation = os.listdir('./data/relation/')
 relation = sorted(relation) #stock correalation matrix를 담은 걸 가져옴
 date_unique=df1['dt'].unique()
 stock_trade_data=date_unique.tolist()
@@ -22,7 +22,7 @@ df1['dt']=df1['dt'].astype('datetime64') # datetime으로 바꾸고
 
 def fun(relation_dt, start_dt_month, end_dt_month,df1):
     prev_date_num = 20
-    adj_all = pd.read_csv('/home/THGNN-main/data/relation/'+relation_dt+'.csv', index_col=0)
+    adj_all = pd.read_csv('./data/relation/'+relation_dt+'.csv', index_col=0)
     adj_stock_set = list(adj_all.index)
     pos_g = nx.Graph(adj_all > 0.1) # 0.1보다 큰 것만 connect. 즉 다 '연결'된 것으로 간주. 이 때 GAT로서 알아서 weight를 조절해줄 것이다.
     pos_adj = nx.adjacency_matrix(pos_g).toarray() # Adjacency matrix로 바꿔줌
@@ -42,8 +42,6 @@ def fun(relation_dt, start_dt_month, end_dt_month,df1):
     dts = stock_trade_data[stock_trade_data.index(start_dt_month):stock_trade_data.index(end_dt_month)+1]
     print(dts)
     
-    
-    
     for i in tqdm(range(len(dts))):
         end_data=dts[i]
         start_data = stock_trade_data[stock_trade_data.index(end_data)-(prev_date_num - 1)]
@@ -60,7 +58,7 @@ def fun(relation_dt, start_dt_month, end_dt_month,df1):
             if y.T.shape[1] == prev_date_num: # 만약 20일치 데이터가 다 존재한다면
                 one = [] # 이건 뭘 위한 거지?
                 feature_all.append(y) # feature_all에 추가
-                mask.append(True) # mask에 True 추가
+                mask.append(True) #  mask에 True 추가
                 label = df3.loc[df3['dt'] == end_data]['label'].values # label은 end_data에 해당하는 label을 가져옴
                 labels.append(label[0]) # labels에 추가
                 one.append(code[j]) # one에 code[j] 추가
@@ -76,10 +74,10 @@ def fun(relation_dt, start_dt_month, end_dt_month,df1):
         labels = torch.tensor(labels, dtype=torch.float32)
         result = {'pos_adj': pos_adj, 'neg_adj': neg_adj,  'features': features,
                   'labels': labels, 'mask': mask} # Varibale은 그냥 Tensor임! 최신 버전의 Pytorch에서는 없어짐
-        with open('/home/THGNN-main/data/data_train_predict/'+end_data+'.pkl', 'wb') as f:
-            pickle.dump(result, f)
-        df = pd.DataFrame(columns=['code', 'dt'], data=day_last_code)
-        df.to_csv('/home/THGNN-main/data/daily_stock/'+end_data+'.csv', header=True, index=False, encoding='utf_8_sig')
+        with open('./data/data_train_predict/'+end_data+'.pkl', 'wb') as f:
+            pickle.dump(result, f) #pickle 파일을 작성
+        df = pd.DataFrame(columns=['code', 'dt'], data=day_last_code) #csv 파일로는 correlation을 저장
+        df.to_csv('./data/daily_stock/'+end_data+'.csv', header=True, index=False, encoding='utf_8_sig')
         
 #The first parameter and third parameters indicate the last trading day of each month, and the second parameter indicates the first trading day of each month.
 

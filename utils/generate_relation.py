@@ -8,7 +8,7 @@ from tqdm import tqdm
 feature_cols = ['high','low','close','open','to','vol']
 
 def cal_pccs(x, y, n):
-    sum_xy = np.sum(np.sum(x*y))
+    sum_xy = np.sum(np.sum(x*y)) #요소간 곱한 것을 모두 더하기 위함임. e.g. [1,2,3]*[1,2,3] -> 근데 굳이 이렇게 해야하나...
     sum_x = np.sum(np.sum(x))
     sum_y = np.sum(np.sum(y))
     sum_x2 = np.sum(np.sum(x*x))
@@ -16,20 +16,18 @@ def cal_pccs(x, y, n):
     pcc = (n*sum_xy-sum_x*sum_y)/np.sqrt((n*sum_x2-sum_x*sum_x)*(n*sum_y2-sum_y*sum_y))
     return pcc
 
-def calculate_pccs(xs, yss, n):
+def calculate_pccs(xs, yss, n): # ref_dict[code], ref_dict, n
     '''
     example usage:
     xs
-    
-    '''
-    
+     '''
     result = []
     for name in yss:
         ys = yss[name]
         tmp_res = []
         for pos, x in enumerate(xs):
             y = ys[pos]
-            tmp_res.append(cal_pccs(x, y, n))
+            tmp_res.append(cal_pccs(x, y, n)) # x: 주식 code, y: features, n: 참조할 과거 시계열 길이.
         result.append(tmp_res)
     return np.mean(result, axis=1) # mean of all pccs -> 6개의 feature에 대한 평균 pccs -> 이렇게 하면 안되지 않니... 어떻게 했지 
 
@@ -46,7 +44,7 @@ def stock_cor_matrix(ref_dict, codes, n, processes=1):
         data[i, :] = calculate_pccs(ref_dict[codes[i]], ref_dict, n)
     return pd.DataFrame(data=data, index=codes, columns=codes)
 
-path1 = "/home/THGNN-main/data/csi300.pkl"
+path1 = "./data/csi300.pkl"
 df1 = pickle.load(open(path1, 'rb'), encoding='utf-8')
 #prev_date_num Indicates the number of days in which stock correlation is calculated
 prev_date_num = 20
@@ -79,7 +77,7 @@ for i in range(len(dt)):
         result.iloc[i,i]=1
     t2 = time.time()
     print('time cost', t2 - t1, 's')
-    result.to_csv("/home/THGNN-main/data/relation/"+str(end_data)+".csv")
+    result.to_csv("./data/relation/"+str(end_data)+".csv")
     
     '''
     그냥 데이터 가지고 

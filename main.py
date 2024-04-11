@@ -46,7 +46,7 @@ class Args:
         self.batch_size = 1
         self.loss_fcn = mse_loss
         # save model settings
-        self.save_path = os.path.join(os.path.abspath('.'), "/home/THGNN-main/data/model_saved/")
+        self.save_path = os.path.join(os.path.abspath('.'), "./data/model_saved/")
         self.load_path = self.save_path
         self.save_name = self.model_name + "_hidden_" + str(self.hidden_dim) + "_head_" + str(self.num_heads) + \
                          "_outfeat_" + str(self.out_features) + "_batchsize_" + str(self.batch_size) + "_adjth_" + \
@@ -83,9 +83,9 @@ class Args:
 def fun_train_predict(data_start, data_middle, data_end, pre_data):
     args = Args()
     os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu)
-    dataset = AllGraphDataSampler(base_dir="/home/THGNN-main/data/data_train_predict/", data_start=data_start,
+    dataset = AllGraphDataSampler(base_dir="./data/data_train_predict/", data_start=data_start,
                                   data_middle=data_middle, data_end=data_end)
-    val_dataset = AllGraphDataSampler(base_dir="/home/THGNN-main/data/data_train_predict/", mode="val", data_start=data_start,
+    val_dataset = AllGraphDataSampler(base_dir="./data/data_train_predict/", mode="val", data_start=data_start,
                                       data_middle=data_middle, data_end=data_end)
     dataset_loader = DataLoader(dataset, batch_size=args.batch_size, pin_memory=True, collate_fn=lambda x: x)
     val_dataset_loader = DataLoader(val_dataset, batch_size=1, pin_memory=True)
@@ -114,12 +114,12 @@ def fun_train_predict(data_start, data_middle, data_end, pre_data):
     # predict
     checkpoint = torch.load(os.path.join(args.load_path, pre_data + "_epoch_" + str(epoch + 1) + ".dat"))
     model.load_state_dict(checkpoint['model'])
-    data_code = os.listdir('/home/THGNN-main/data/daily_stock')
+    data_code = os.listdir('./data/daily_stock')
     data_code = sorted(data_code)
     data_code_last = data_code[data_middle:data_end]
     df_score=pd.DataFrame()
     for i in tqdm(range(len(val_dataset))):
-        df = pd.read_csv('/home/THGNN-main/data/daily_stock/' + data_code_last[i], dtype=object)
+        df = pd.read_csv('./data/daily_stock/' + data_code_last[i], dtype=object)
         tmp_data = val_dataset[i]
         pos_adj, neg_adj, features, labels, mask = extract_data(tmp_data, args.device)
         model.train()
@@ -134,7 +134,7 @@ def fun_train_predict(data_start, data_middle, data_end, pre_data):
         df_score=pd.concat([df_score,df])
 
         #df.to_csv('prediction/' + data_code_last[i], encoding='utf-8-sig', index=False)
-    df_score.to_csv('/home/THGNN-main/data/prediction/pred.csv')
+    df_score.to_csv('./data/prediction/pred.csv')
     print(df_score)
     
 if __name__ == "__main__":
