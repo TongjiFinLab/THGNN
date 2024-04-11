@@ -25,8 +25,8 @@ def calculate_pccs(xs, yss, n): # ref_dict[code], ref_dict, n
     for name in yss:
         ys = yss[name]
         tmp_res = []
-        for pos, x in enumerate(xs):
-            y = ys[pos]
+        for pos, x in enumerate(xs): # pos는 feature의 index, x는 feature의 20일 동안의 데이터
+            y = ys[pos] # 하나의 feature에 대해서 20일 어치의 데이터를 가져온다.
             tmp_res.append(cal_pccs(x, y, n)) # x: 주식 code, y: features, n: 참조할 과거 시계열 길이.
         result.append(tmp_res)
     return np.mean(result, axis=1) # mean of all pccs -> 6개의 feature에 대한 평균 pccs -> 이렇게 하면 안되지 않니... 어떻게 했지 
